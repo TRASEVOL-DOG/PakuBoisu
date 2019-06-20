@@ -1,0 +1,8 @@
+---
+main: client.lua
+name: Paku-Bois
+username: trasevol-dog
+dimensions: full
+multiplayer:
+  enabled: true
+  serverMain: server.lua

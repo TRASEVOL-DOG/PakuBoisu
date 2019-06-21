@@ -1,10 +1,10 @@
 todo_list.txt
 
-# Silly Mac files
-.DS_Store
-
-# Code coverage files
-luacov.*
+# Castle network lua files
+bitser.lua
+serpent.lua
+state.lua
+cs.lua
 
 # Compiled Lua sources
 luac.out

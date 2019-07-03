@@ -1,0 +1,9 @@
+---
+main: client.lua
+name: Pac-Bois 🍰
+username: trasevol-dog
+primaryColor: f7872a
+dimensions: full
+multiplayer:
+  enabled: true
+  serverMain: server.lua

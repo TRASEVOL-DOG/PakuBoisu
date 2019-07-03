@@ -216,6 +216,15 @@ function _draw()
                  + (gear_hover and (btn(2) and 2 or 1) or 0))*2
   spr(s, gear_x, gear_y + (gear_hover and btn(2) and 2 or 0), 2, 2)
   
+  local b
+  for _,p in pairs(players) do
+    b = b or p.restart
+  end
+  
+  if b and not (castle and castle.uiupdate) then
+    spr(74 + (flr(t()/0.1)%3)*2, gear_x - 8, gear_y, 2, 2)
+  end
+  
   draw_playerui()
   draw_connection()
   
@@ -938,7 +947,7 @@ Use the cursor to direct your Pac-Boi!
     end
   end
   
-  ui.markdown("### Reset scores:"..(n > 0 and (t() % 1 < 0.5 and " ( . )" or " ( ! )") or ""))
+  ui.markdown("### Reset scores:"..(n > 0 and (t() % 1 < 0.5 and " ( - )" or " ( ! )") or ""))
   ui.markdown(n.."/"..m.." want to reset"..(n > 0 and "!" or "."))
   my_player.reset = ui.toggle("No reset", "Let's reset!", my_player.reset or false)
   

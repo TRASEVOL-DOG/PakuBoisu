@@ -122,15 +122,8 @@ function client_input(diff)
               --p.eating = 0.5
             end
           end
-        elseif #d[9] < #p.eaten then
+        elseif #d[9] < #p.eaten and #d[9] <= 1 then
           p.eaten = {}
-          for i,od in pairs(d[9]) do
-            p.eaten[i] = {
-              id = od[1],
-              type = od[2],
-              colors = od[3]
-            }
-          end
 	      end
       end
       
@@ -143,7 +136,7 @@ function client_input(diff)
         load_user_pic(p, d[13])
       end
       
-      p.ready = d[14]
+      p.reset = d[14]
       
       ::player_sync_end::
     end

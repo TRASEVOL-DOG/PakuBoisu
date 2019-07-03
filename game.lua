@@ -77,8 +77,10 @@ function _update()
     end
   end
   
-  local n,m = 0, group_size("players")
-  for p in group("players") do
+  local n,m = 0, 0
+  for _,p in pairs(players) do
+    m = m + 1
+
     if p.reset then
       n = n + 1
     end
@@ -758,7 +760,7 @@ function draw_playerui()
       printp(0x0300, 0x3130, 0x0300, 0x0)
       printp_color(9, 19, 19)
       
-      local str = u.s.username or "Guest"
+      local str = u.s.name or "Guest"
       local w = str_px_width(str)
       local x = mid(x + 16 - w/2, 1, screen_w()-1-w)
       pprint(str, x, y - 16)
@@ -927,8 +929,10 @@ Use the cursor to direct your Pac-Boi!
 ]])
   
   -- Reset scores vote
-  local n,m = 0, group_size("players")
-  for p in group("players") do
+  local n,m = 0, 0
+  for _,p in pairs(players) do
+    m = m + 1
+
     if p.reset then
       n = n + 1
     end

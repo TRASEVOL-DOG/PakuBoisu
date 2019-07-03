@@ -218,7 +218,7 @@ function _draw()
   
   local b
   for _,p in pairs(players) do
-    b = b or p.restart
+    b = b or p.reset
   end
   
   if b and not (castle and castle.uiupdate) then

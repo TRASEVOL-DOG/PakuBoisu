@@ -72,6 +72,29 @@ function _update()
   update_playerui()
   update_logs()
   
+  for i,p in pairs(players) do
+    if p.being_eaten then
+      local o = players[p.being_eaten]
+      if not o or not (o.eating > 0 or o.puking) then
+        p.being_eaten = false
+        
+        if o then
+          local a = atan2(o.cur_x - o.x, o.cur_y - o.y)
+          p.x  = o.x + 0.5 * o.radius * cos(a)
+          p.y  = o.y + 0.5 * o.radius * sin(a)
+          p.vx = 64 * cos(a)
+          p.vy = 64 * sin(a)
+        end
+        
+        p.invinc = 2
+        
+        if not p.__registered then
+          register_object(p)
+        end
+      end
+    end
+  end
+  
   if IS_SERVER then
     if group_size("pastries") < PASTRY_MAX then
       pastry_spawn_t = pastry_spawn_t - dt()
@@ -390,7 +413,7 @@ function player_eats(s, o)
   if not o.type then -- is player
     d.id = -d.id
     d.colors = d.color
-    o.being_eaten = true
+    o.being_eaten = s.id
     log("Player #"..(s.id or "ME").." ate player #"..o.id.."!")
     s.score = s.score + 1
     s.eating = 0.5

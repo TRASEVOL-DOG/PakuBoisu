@@ -7,7 +7,18 @@ if CASTLE_PREFETCH then
     "sugarcoat/sugarcoat.lua",
     "assets/layers.png",
     "assets/sheet.png",
-    "assets/HungryPro.ttf"
+    "assets/title1.png",
+    "assets/HungryPro.ttf",
+    "assets/theme.ogg",
+    "assets/sfx/pakuboisu.ogg",
+    "assets/sfx/connected.ogg",
+    "assets/sfx/crunch.ogg",
+    "assets/sfx/eat_you.ogg", 
+    "assets/sfx/you_eat.ogg", 
+    "assets/sfx/other_eat.ogg",
+    "assets/sfx/throw_up_step.ogg",
+    "assets/sfx/max_size.ogg",
+    "assets/sfx/reset.ogg"
   })
 end
 
@@ -85,10 +96,7 @@ function client.load()
 
   switch_shader()
   
-  load_png("sheet", "assets/sheet.png", nil, true)
-  load_png("layers", "assets/layers.png", nil, false)
-  
-  load_font("assets/HungryPro.ttf", 16, "main", true)
+  load_assets()
   
   define_controls()
   

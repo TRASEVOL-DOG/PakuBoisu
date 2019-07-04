@@ -57,6 +57,10 @@ function _init()
     
     add_log("You joined the game! Welcome!")
   end
+  
+  
+  sfx("pakuboisu")
+  music("theme", true)
 end
 
 local pastry_spawn_t = 0.5
@@ -118,6 +122,14 @@ function _update()
       end
     else
       gear_hover = false
+    end
+    
+    if not title_t then
+      title_t = 0
+    end
+    
+    if title_t < 10 then
+      title_t = title_t + dt()
     end
   end
 end
@@ -228,6 +240,19 @@ function _draw()
   draw_playerui()
   draw_connection()
   
+  if title_t and title_t < 2 then
+    local x = screen_w()/2
+
+    local v = sin((sqr(title_t / 2) * 0.3) - 0.3) + 1
+    local y = screen_h() * (0.5 - 1 * v)
+    
+    local r = (1 - title_t/2.5) * 192
+    
+    palt(37, false)
+    circfill(x, y, r, 19)
+    spr_sheet("title", x-32, y-32)
+    palt(37, true)
+  end
   
   if btn(2) then
     spr(7, btnv(0), btnv(1), 1, 2)
@@ -304,8 +329,10 @@ function update_player(s)
         o.vy = 128 * sin(a)
       end
       
-      s.radius = s.radius - RADIUS_STEP
+      s.radius = max(s.radius - RADIUS_STEP, 7)
       s.eaten[#s.eaten] = nil
+      
+      sfx("throw_up_step")
       
       if #s.eaten == 0 then
         -- not puking anymore!
@@ -354,6 +381,8 @@ function player_eats(s, o)
 	  colors = o.colors
   }
   
+  sfx("crunch")
+  
   if not o.type then -- is player
     d.id = -d.id
     d.colors = d.color
@@ -367,8 +396,13 @@ function player_eats(s, o)
     create_crumbs(o.x, o.y, 3, 31, o.color or 1)
     if o.id == my_id then
       add_shake(12)
+      sfx("eat_you")
+    elseif s.id == my_id then
+      add_shake(6)
+      sfx("you_eat")
     else
       add_shake(4)
+      sfx("other_eat")
     end
   else
     log("Player #"..(s.id or "ME").." ate pastry #"..o.id.."!")
@@ -388,6 +422,7 @@ function player_eats(s, o)
     s.radius = s.radius + RADIUS_STEP
     if s.radius >= MAX_RADIUS then
       add_log((s.name or "This Boi").." reached their maximum size!!")
+      sfx("max_size")
     end
   end
   
@@ -926,8 +961,6 @@ function settings_panel()
   ui.markdown("*Trasevol_Dog presents...*")
   ui.image("assets/title.png")
   
-  
-  
   -- game description + controls
   ui.markdown([[
 ### Goal:
@@ -1080,6 +1113,25 @@ function define_controls()
   register_btn(2, 0, input_id("mouse_button", "lb"))
 end
 
+function load_assets()
+  load_png("sheet", "assets/sheet.png", nil, true)
+  load_png("layers", "assets/layers.png", nil, false)
+  load_png("title", "assets/title1.png", nil, false)
+  
+  load_font("assets/HungryPro.ttf", 16, "main", true)
+  
+  load_music("assets/theme.ogg", "theme", 1)
+  
+  load_sfx("assets/sfx/pakuboisu.ogg", "pakuboisu", 1)
+  load_sfx("assets/sfx/connected.ogg", "connected", 1)
+  load_sfx("assets/sfx/crunch.ogg", "crunch", 1)
+  load_sfx("assets/sfx/eat_you.ogg", "eat_you", 1)
+  load_sfx("assets/sfx/you_eat.ogg", "you_eat", 1)
+  load_sfx("assets/sfx/other_eat.ogg", "other_eat", 1)
+  load_sfx("assets/sfx/throw_up_step.ogg", "throw_up_step", 1)
+  load_sfx("assets/sfx/max_size.ogg", "max_size", 1)
+  load_sfx("assets/sfx/reset.ogg", "reset", 1)
+end
 
 
 function give_or_take(n)

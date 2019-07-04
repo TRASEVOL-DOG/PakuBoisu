@@ -178,6 +178,8 @@ function client_input(diff)
       my_player.eaten = {}
 
       reset_id = c_read[4]
+      
+      sfx("reset")
     end
   end
   
@@ -233,6 +235,8 @@ end
 
 function client_connect()
   log("Connected to server!")
+  
+  sfx("connected")
   
   c_read = client.share
   c_write = client.home

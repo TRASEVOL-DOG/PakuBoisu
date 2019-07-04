@@ -26,3 +26,6 @@ function server.update()
   
   if ROLE then server.postupdate() end
 end
+
+function sfx() end
+function music() end

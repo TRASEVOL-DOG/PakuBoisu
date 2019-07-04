@@ -1,9 +1,11 @@
 ---
 main: client.lua
-name: Pac-Bois 🍰
-username: trasevol-dog
-primaryColor: f7872a
+title: Pac-Bois 🍰
+owner: trasevol-dog
+primaryColor: 46dccd
+coverImage: preview.png
 dimensions: full
 multiplayer:
   enabled: true
   serverMain: server.lua
+description: Eat food to get bigger, then eat other players that are smaller than you!

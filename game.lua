@@ -61,6 +61,8 @@ function _init()
   
   sfx("pakuboisu")
   music("theme", true)
+  
+  title_t = -1
 end
 
 local pastry_spawn_t = 0.5
@@ -241,6 +243,8 @@ function _draw()
   draw_connection()
   
   if title_t and title_t < 2 then
+    local title_t = max(title_t, 0)
+  
     local x = screen_w()/2
 
     local v = sin((sqr(title_t / 2) * 0.3) - 0.3) + 1

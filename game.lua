@@ -1064,6 +1064,8 @@ Use the cursor to direct your Pac-Boi!
 ### Credits:
 This game was made by [Trasevol_Dog](https://twitter.com/trasevol_dog), for Castle, using [Sugarcoat](https://github.com/TRASEVOL-DOG/sugarcoat) and [Share.lua](https://github.com/castle-games/share.lua).
 
+The palette used in this game is [Lux3k](https://lospec.com/palette-list/lux3k) from [Lux](https://twitter.com/thisislux)!
+
 **Thank you to the whole Castle team!**
 
 **Thank you Elodie for all the pastry ideas!**

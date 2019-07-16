@@ -14,7 +14,7 @@ function server.load()
   sfx = function() end
   
   init_sugar("Paku~Boisu!", 192, 128, 3)
-  set_frame_waiting(50)
+--  set_frame_waiting(50)
   
   _init()
 end

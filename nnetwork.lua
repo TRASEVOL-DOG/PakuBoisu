@@ -29,10 +29,10 @@ function init_network()
 end
 
 function update_network()
-  network_t = network_t - dt()
-  if network_t > 0 then
-    return
-  end
+--  network_t = network_t - dt()
+--  if network_t > 0 then
+--    return
+--  end
   
   if IS_SERVER then
     server_output()
@@ -40,7 +40,7 @@ function update_network()
     client_output()
   end
   
-  network_t = 0.05
+--  network_t = 0.05
 end
 
 

@@ -56,11 +56,10 @@ function _init()
     my_player = create_player(nil, 64, 64)
     
     add_log("You joined the game! Welcome!")
+  
+    sfx("pakuboisu")
+    music("theme", true)
   end
-  
-  
-  sfx("pakuboisu")
-  music("theme", true)
   
   title_t = -1
 end

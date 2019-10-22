@@ -93,6 +93,8 @@ function client.load()
   end
   
   use_palette(palette)
+  
+  screen_render_integer_scale(false)
 
   switch_shader()
   
